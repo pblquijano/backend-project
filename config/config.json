@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "shorturl_u",
+    "password": "hmJ9j5TByrjwBlSK",
+    "database": "shorts_urls",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "shorturl_u",
+    "password": "hmJ9j5TByrjwBlSK",
+    "database": "shorts_urls",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "shorturl_u",
+    "password": "hmJ9j5TByrjwBlSK",
+    "database": "shorts_urls",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "yellowme-back",
+  "version": "1.0.0",
+  "description": "Api Rest para acortar URL´s",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --require ts-node/register index.ts",
+    "dev": "nodemon --require ts-node/register index.ts"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "express-fileupload": "^0.3.0",
+    "morgan": "^1.9.0",
+    "mysql2": "^1.5.3",
+    "reflect-metadata": "^0.1.12",
+    "sequelize": "^4.37.10",
+    "sequelize-cli": "^4.0.0",
+    "sequelize-typescript": "^0.6.5",
+    "shortid": "^2.2.10",
+    "strong-error-handler": "^2.3.2",
+    "valid-url": "^1.0.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "@types/express": "^4.0.39",
+    "@types/node": "^8.0.53",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.8.1"
+  },
+  "keywords": [
+    "yellowme",
+    "interview",
+    "back",
+    "endpoints"
+  ],
+  "author": "Pablo Antonio Quijano Villamil",
+  "license": "ISC"
+}
