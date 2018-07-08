@@ -14,8 +14,9 @@ angular.module("backend-project", ["ui.router","ngAnimate","ngResource","ngMater
 	    }).state('redirect', {
 	        url: '/:code',
 	        views:{  
-	          'container@':{
-	            templateUrl: '../views/page_main.html'	           
+	          'container@':{	            
+            	controller: "pageRedirectController"
+
 	          }
 	       }
 	    });

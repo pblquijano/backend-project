@@ -1,6 +1,6 @@
 angular.module("backend-project")
 .controller('pageMainController', function($scope, $mdDialog, $http) {	
-	
+	$scope.isLoading = true;
 	$scope.urls = [];
 	//Get the hostname
 	var url = window.location.href;
@@ -15,11 +15,13 @@ angular.module("backend-project")
 			templateUrl: 'views/add_url.tmpl.html',
 			parent: angular.element(document.body),
 			targetEvent: ev,
-			clickOutsideToClose:true
+			clickOutsideToClose:false
 	    })
 	    .then(function(answer) {
-	    	console.log('You said the information was "' + answer + '".');
+	    	
 	    	if (answer) {
+	    		$scope.isLoading = true;
+	    		getURLs();
 	    	}
           
         }, function() {
@@ -29,6 +31,24 @@ angular.module("backend-project")
 
 	function getHost(){
 		return $scope.host;
+	}
+
+	function getURLs(){
+		$http.get("/api/url/", $scope.item).then(
+			function(response){
+				$scope.urls = angular.copy(response.data);
+				$scope.isLoading = false;
+			},
+			function(response){
+				swal({
+				    type: 'error',
+				    title: 'Error',
+				    confirmButtonColor: "#FFC107",
+					confirmButtonText: "Accept",
+				    html: ''+((response.data && response.data.message) ? response.data.message : "Server error.")
+				});
+			}
+		);
 	}
 
 	function AddDialogController($scope, $mdDialog) {
@@ -83,5 +103,6 @@ angular.module("backend-project")
 			$mdDialog.cancel();
 		};
 	}
+	getURLs();
 
 });
