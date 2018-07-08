@@ -1,9 +1,14 @@
 angular.module("backend-project")
-.controller('pageMainController', function($scope, $mdDialog, $http) {
+.controller('pageMainController', function($scope, $mdDialog, $http) {	
+	
 	$scope.urls = [];
+	//Get the hostname
 	var url = window.location.href;
 	var arr = url.split("/");
 	$scope.host = arr[0] + "//" + arr[2];
+	//-----------------------------------------
+
+	//Show the dialog to shorten urls
 	$scope.showAdd = function(ev) {
 	    $mdDialog.show({
 			controller: AddDialogController,
@@ -21,14 +26,17 @@ angular.module("backend-project")
         	console.log('You cancelled the dialog.');
         });
 	};
+
 	function getHost(){
 		return $scope.host;
 	}
+
 	function AddDialogController($scope, $mdDialog) {
 		$scope.item={};
 		$scope.selectedIndex = 0;
 		$scope.isSending = false;
 
+		//Send url to be shortened		
 		$scope.sendData = function() {
 			if ($scope.selectedIndex == 0) {
 				if ($scope.item.realURL) {
@@ -38,6 +46,7 @@ angular.module("backend-project")
 							console.log(response);
 							$mdDialog.hide(true);
 							$scope.isSending = false;
+							//Show url shortened
 							swal({
 							    type: 'success',
 							    title: 'Shortened url',
