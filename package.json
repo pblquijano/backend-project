@@ -8,8 +8,6 @@
     "dev": "nodemon --require ts-node/register index.ts"
   },
   "dependencies": {
-    "@uirouter/angularjs": "^1.0.18",
-    "angular": "^1.5.5",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-fileupload": "^0.3.0",

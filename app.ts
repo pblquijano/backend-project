@@ -2,6 +2,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as logger from 'morgan';
+import * as path from 'path';
 import * as errorhandler from 'strong-error-handler';
 
 export const app = express();
@@ -17,6 +18,7 @@ app.use(function(req, res, next) {
 app.use(logger('dev'));
 app.use(bodyParser.json({limit: '50mb'}));
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/*', function(req, res){
   res.sendFile(__dirname + '/public/index.html');
 });
