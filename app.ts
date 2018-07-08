@@ -4,6 +4,8 @@ import * as bodyParser from 'body-parser';
 import * as logger from 'morgan';
 import * as path from 'path';
 import * as errorhandler from 'strong-error-handler';
+import {urls} from './routes/urls';
+
 
 export const app = express();
 app.use(function(req, res, next) { 
@@ -23,7 +25,7 @@ app.use('/*', function(req, res){
   res.sendFile(__dirname + '/public/index.html');
 });
 
-
+app.use('/api/url', urls);
 app.use(errorhandler({
   debug: process.env.ENV !== 'prod',
   log: true,
