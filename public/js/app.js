@@ -6,7 +6,9 @@ angular.module("backend-project", ["ui.router","ngAnimate","ngResource","ngMater
 	        url: '/', 
 	        views:{  
 	          'container@':{
-	            templateUrl: '../views/page_main.html'	           
+	            templateUrl: '../views/page_main.html',
+            	controller: "pageMainController"
+
 	          }
 	       }
 	    }).state('redirect', {

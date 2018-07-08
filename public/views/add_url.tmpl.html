@@ -1,0 +1,40 @@
+<md-dialog aria-label="URL">
+  <form ng-submit="sendData()">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Add URL</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="images/icons/close.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px; ">
+      <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex" md-stretch-tabs="always">
+        <md-tab label="Normal">
+          <md-content class="md-padding">
+            <md-input-container class="md-block">
+              <label>Original URL</label>
+              <input ng-model="item.realURL" required>
+            </md-input-container>
+          </md-content>
+        </md-tab>
+        <md-tab label="Bulk">
+          <md-content class="md-padding">
+            nothing
+            
+          </md-content>
+        </md-tab>
+
+      </md-tabs>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      
+      <md-button type="submit" ng-click="answer('useful')" style="margin-right:20px;" >
+        Shorten
+      </md-button>
+      <span flex></span>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

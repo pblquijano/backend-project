@@ -1,1 +1,24 @@
-<h1>Content</h1>
+<md-toolbar class="md-primary md-whiteframe-1dp">
+  <div class="md-toolbar-tools">
+    <h2 flex md-truncate>URLs Shortener</h2>
+
+  </div>
+</md-toolbar>
+<md-content class="md-padding" layout="column">
+	<md-card >
+
+        <table class="table">
+			<tr>
+			    <th>Real URL</th>
+			    <th>Shortened URL</th>
+			</tr>
+			<tr ng-repeat="url in urls">
+				<td>{{url.realURL}}</td>
+				<td>{{url.codeURL}}</td>
+			</tr>
+		</table>
+      </md-card>
+</md-content>
+<button class="md-fab md-fab-bottom-right s md-button md-ink-ripple scrolling" type="button" docs-scroll-class="scrolling" ng-click="showAdd($event)" aria-label="Show Add URL">
+    <md-icon md-svg-icon="images/icons/add.svg"></md-icon>
+</button>
