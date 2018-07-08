@@ -19,13 +19,14 @@ app.use(function(req, res, next) {
 
 app.use(logger('dev'));
 app.use(bodyParser.json({limit: '50mb'}));
+app.use('/api/url', urls);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/*', function(req, res){
   res.sendFile(__dirname + '/public/index.html');
 });
 
-app.use('/api/url', urls);
+
 app.use(errorhandler({
   debug: process.env.ENV !== 'prod',
   log: true,

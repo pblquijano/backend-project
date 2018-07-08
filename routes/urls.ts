@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import {validUrl } from 'valid-url';
-import {shortid} from 'shortid';
+import * as validUrl from 'valid-url';
+import * as shortid  from 'shortid';
 import {Url} from '../models/Url';
 
 export const urls = Router();
@@ -15,6 +15,8 @@ urls.post('/',  async (req, res, next) => {
 					codeURL : shortid.generate()
 				}
 				const url = await Url.create(item);
+				console.log("item", item);
+				console.log("Response", url);
 				res.status(201).json(url);
 			}else{
 				res.status(401).json({

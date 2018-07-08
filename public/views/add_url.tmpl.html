@@ -4,12 +4,15 @@
       <div class="md-toolbar-tools">
         <h2>Add URL</h2>
         <span flex></span>
-        <md-button class="md-icon-button" ng-click="cancel()">
+        <md-button class="md-icon-button" ng-click="cancel()" ng-if="!isSending">
           <md-icon md-svg-src="images/icons/close.svg" aria-label="Close dialog"></md-icon>
         </md-button>
       </div>
     </md-toolbar>
-    <md-dialog-content style="max-width:800px;max-height:810px; ">
+    <div ng-class="{ showMe: isSending }" class="collapsable" layout="column" layout-align="center center">
+        <md-progress-linear class="md-hue-1" md-mode="indeterminate"></md-progress-linear>
+    </div>
+    <md-dialog-content style="max-width:800px;max-height:810px; " ng-class="{ 'myDisabled' : isSending}">
       <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex" md-stretch-tabs="always">
         <md-tab label="Normal">
           <md-content class="md-padding">
@@ -28,7 +31,7 @@
 
       </md-tabs>
     </md-dialog-content>
-    <md-dialog-actions layout="row">
+    <md-dialog-actions layout="row"  ng-class="{ 'myDisabled' : isSending}">
       <span flex></span>
       
       <md-button type="submit" ng-click="answer('useful')" style="margin-right:20px;" >
