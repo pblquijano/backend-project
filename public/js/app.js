@@ -1,30 +1,32 @@
-angular.module("backend-project", ['ui.router'])
-.config(function($locationProvider, $stateProvider, $urlRouterProvider){
+angular.module("backend-project", ["ui.router","ngAnimate","ngResource","ngMaterial"])
+.config(function($locationProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider){
 
-	$stateProvider    
-		.state('page', {
-		    url: '',
-		    abstract: true,
-		    views:{
-		      'nav':{
-		        templateUrl: '../views/nav.html',
-		        controller: 'pageNavController'
-		      },
-		      'footer':{
-		        templateUrl: '../views/footer.html'
-		      }
-		    }
-
-		})
-		.state('page.main', {
-	        url: '/',
-	        block: false, 
+	$stateProvider    		
+		.state('main', {
+	        url: '/', 
+	        views:{  
+	          'container@':{
+	            templateUrl: '../views/page_main.html'	           
+	          }
+	       }
+	    }).state('redirect', {
+	        url: '/:code',
 	        views:{  
 	          'container@':{
 	            templateUrl: '../views/page_main.html'	           
 	          }
 	       }
 	    });
+	$mdThemingProvider
+      .theme("default")
+      .primaryPalette("amber", {
+        default: "500",
+        "hue-1": "300"
+      })
+      .accentPalette("blue", {
+        default: "500",
+        "hue-1": "300"
+      });
 	$locationProvider.html5Mode({
 	    enabled: true,
 	    requireBase: true
