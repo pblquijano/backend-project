@@ -1,4 +1,5 @@
 'use strict'
+//import libraries
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as logger from 'morgan';
@@ -21,6 +22,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use('/api/url', urls);
 
+//Configurate render of angularJS
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/*', function(req, res){
   res.sendFile(__dirname + '/public/index.html');

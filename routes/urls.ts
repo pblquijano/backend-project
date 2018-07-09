@@ -40,15 +40,17 @@ urls.post('/',  async (req, res, next) => {
 
 
 urls.post('/bulk/', [fu], async (req, res, next) => {
-	try {
-		
+	try {		
 		var path = __dirname +'/'+new Date().getTime()+'.txt';
 		await req.files.file.mv(path);
 		let urls:any[] = [];
+		//Prepare file to be read line by line
 		const myInterface = lineReader.createInterface({
 		  input: fs.createReadStream(path)
 		});
 
+
+		//Read file line by line
 	  	myInterface.on('line',  function (line) {
 			if (validUrl.isUri(line)) {
 				const item = {
@@ -56,16 +58,19 @@ urls.post('/bulk/', [fu], async (req, res, next) => {
 					codeURL : shortid.generate()
 				}
 				urls.push(item);
-				console.log(item);
+				
 			}
 		}).on('close', async function() {
+			//Add urls
 		    for(const url_object of urls){
 				await Url.create(url_object);
 			}
+			//Check flle uploaded
 			fs.exists(path, (exists) => {
 	            if (exists) {
-	              fs.unlink(path, function(err){
-	              });
+					//Delete flle uploaded
+					fs.unlink(path, function(err){
+					});
 	            }
 
 	        });		

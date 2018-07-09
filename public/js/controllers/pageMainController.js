@@ -25,14 +25,14 @@ angular.module("backend-project")
 	    	}
           
         }, function() {
-        	console.log('You cancelled the dialog.');
+        	//console.log('You cancelled the dialog.');
         });
 	};
 
 	function getHost(){
 		return $scope.host;
 	}
-
+	//Get urls list
 	function getURLs(){
 		$http.get("/api/url/", $scope.item).then(
 			function(response){
@@ -59,13 +59,14 @@ angular.module("backend-project")
 
 		//Send url to be shortened		
 		$scope.sendData = function() {
-			console.log("SE ENVIA");
+
 			if ($scope.selectedIndex == 0) {
+				//If is only one url
 				if ($scope.item.realURL) {
 					$scope.isSending = true;
 					$http.post("/api/url/", $scope.item).then(
 						function(response){
-							console.log(response);
+							//console.log(response);
 							$mdDialog.hide(true);
 							$scope.isSending = false;
 							//Show url shortened
@@ -100,6 +101,7 @@ angular.module("backend-project")
 				}
 				
 			}else{
+				//If are bulk urls
 				if ($scope.file) {
 					$scope.isSending = true;
 					
@@ -107,7 +109,7 @@ angular.module("backend-project")
 						url: "/api/url/bulk/",
 						data: {file: $scope.file}
 					}).then(function (response) {
-						console.log(response);
+						//console.log(response);
 	                	$mdDialog.hide(true);
 						$scope.isSending = false;
 						//Show urls shortened
@@ -154,10 +156,8 @@ angular.module("backend-project")
 					confirmButtonText: "Aceptar",
 				    html: "El archivo tiene un peso mayor a 4MB."
 				});
-			}else{
-				
+			}else{				
 				$scope.file = file;
-
 			}
 			
 		};
