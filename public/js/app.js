@@ -1,4 +1,4 @@
-angular.module("backend-project", ["ui.router","ngAnimate","ngResource","ngMaterial"])
+angular.module("backend-project", ["ui.router","ngAnimate","ngResource","ngMaterial", "ngFileUpload"])
 .config(function($locationProvider, $stateProvider, $urlRouterProvider, $mdThemingProvider){
 
 	$stateProvider    		

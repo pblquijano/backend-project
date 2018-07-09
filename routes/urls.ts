@@ -1,7 +1,12 @@
 import {Router} from 'express';
+
 import * as validUrl from 'valid-url';
 import * as shortid  from 'shortid';
+import * as fs from 'fs';
+import * as lineReader  from 'readline';
 import {Url} from '../models/Url';
+import * as fileUpload from 'express-fileupload';
+var fu = fileUpload();
 
 export const urls = Router();
 
@@ -27,12 +32,51 @@ urls.post('/',  async (req, res, next) => {
 			res.status(400).json({
 	          "message" : "Missing required fields."
 	        });
-		}
-		
+		}		
 	} catch (e) {
 		next(e);
 	}
 });
+
+
+urls.post('/bulk/', [fu], async (req, res, next) => {
+	try {
+		
+		var path = __dirname +'/'+new Date().getTime()+'.txt';
+		await req.files.file.mv(path);
+		let urls:any[] = [];
+		const myInterface = lineReader.createInterface({
+		  input: fs.createReadStream(path)
+		});
+
+	  	myInterface.on('line',  function (line) {
+			if (validUrl.isUri(line)) {
+				const item = {
+					realURL : line,
+					codeURL : shortid.generate()
+				}
+				urls.push(item);
+				console.log(item);
+			}
+		}).on('close', async function() {
+		    for(const url_object of urls){
+				await Url.create(url_object);
+			}
+			fs.exists(path, (exists) => {
+	            if (exists) {
+	              fs.unlink(path, function(err){
+	              });
+	            }
+
+	        });		
+		  	res.status(201).json(urls);
+		});
+				
+	} catch (e) {
+		next(e);
+	}
+});
+
 
 //Get list of urls sorted by creation date
 urls.get('/',  async (req, res, next) => {

@@ -7,7 +7,7 @@
 <div ng-class="{ showMe: isLoading }" class="collapsable" layout="column" layout-align="center center" style="display: block;width: 100%;">
     <md-progress-linear class="md-hue-1" md-mode="indeterminate"></md-progress-linear>
 </div>
-<md-content class="md-padding" layout="column" ng-hide="isLoading">
+<md-content class="md-padding pContent" layout="column" ng-hide="isLoading">
 	<md-card >
 
         <table class="table">
@@ -20,7 +20,7 @@
 				<td><a href="{{host+'/'+url.codeURL}}" target="_blank">{{host+"/"+url.codeURL}}</a></td>
 			</tr>
 		</table>
-		<span ng-if="urls.length <= 0" style="text-align: center; margin-bottom: 15px;">No data to show</span>
+		<span ng-if="urls.length <= 0" style="text-align: center; margin-bottom: 15px; margin-top: 15px;">No data to show</span>
       </md-card>
 </md-content>
 <button class="md-fab md-fab-bottom-right s md-button md-ink-ripple scrolling" type="button" docs-scroll-class="scrolling" ng-click="showAdd($event)" aria-label="Show Add URL" ng-hide="isLoading">
